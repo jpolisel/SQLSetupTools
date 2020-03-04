@@ -125,9 +125,9 @@ namespace SQLReg.Analysis
                             //we find one
 
                             RegKey subrk = new RegKey(fullpath, "");
-                            if (subrk.Properties.ContainsKey("(Default)"))
+                            try
                             {
-                                try
+                                if (subrk.Properties.ContainsKey("(Default)"))
                                 {
                                     string file = subrk.Properties["(Default)"][1].ToLower();
                                     string name = Path.GetFileName(file);
@@ -144,11 +144,9 @@ namespace SQLReg.Analysis
                                             if (!foundTypeLib.Contains(rk.leaf)) foundTypeLib.Add(rk.leaf);
 
                                         }
-                                 
-
                                 }
-                                catch (Exception ex) { }
                             }
+                            catch (Exception ex) { }
                         }//if
                     }//foreach winxx
                 }//foreach
